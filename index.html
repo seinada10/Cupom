@@ -76,14 +76,27 @@
         }
 
         function imprimirCupom() {
-            // Lógica para impressão (pode variar dependendo do ambiente)
-            const conteudoCupom = document.getElementById('cupom').innerHTML;
-            const janelaImpressao = window.open('', '_blank');
-            janelaImpressao.document.write('<html><head><title>Cupom</title></head><body>');
-            janelaImpressao.document.write(conteudoCupom);
-            janelaImpressao.document.write('</body></html>');
-            janelaImpressao.document.close();
-            janelaImpressao.print();
+          // Remover os botões
+          const botoes = document.querySelectorAll('#cupom button');
+          botoes.forEach(botao => {
+              botao.style.display = 'none';
+          });
+      
+          // Lógica para impressão (pode variar dependendo do ambiente)
+          const conteudoCupom = document.getElementById('cupom').innerHTML;
+          const janelaImpressao = window.open('', '_blank');
+          janelaImpressao.document.write('<html><head><title>Cupom</title></head><body>');
+          janelaImpressao.document.write(conteudoCupom);
+          janelaImpressao.document.write('</body></html>');
+          janelaImpressao.document.close();
+          janelaImpressao.print();
+      
+          // Adicionar os botões de volta após 5 segundos
+          setTimeout(function() {
+              botoes.forEach(botao => {
+                  botao.style.display = 'block';
+              });
+          }, 5000);
         }
 
         function voltarFormulario() {
