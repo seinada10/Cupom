@@ -47,7 +47,6 @@
         <h2>Recibo</h2>
         <p><strong>Referente a</strong> <span id="cupomNome">.</span></p>
         <p><strong>Comprador:</strong> <span id="cupomComprador"></span></p>
-        <p><strong>Data:</strong> <span id="cupomData"></span></p>
 
         <button onclick="imprimirCupom()">Imprimir</button>
         <button onclick="voltarFormulario()">Voltar</button>
@@ -57,25 +56,17 @@
         function gerarCupom() {
             const nome = document.getElementById('nome').value;
             const comprador = document.getElementById('comprador').value;
-            const dataAtual = getDataAtual();
 
             document.getElementById('cupomNome').innerText = nome;
             document.getElementById('cupomComprador').innerText = comprador;
-            document.getElementById('cupomData').innerText = dataAtual;
 
             document.getElementById('formulario').style.display = 'none';
             document.getElementById('cupom').style.display = 'block';
         }
 
-        function getDataAtual() {
-            const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
-            return new Date().toLocaleDateString('pt-BR', options);
-        }
-
         function limparCampos() {
             document.getElementById('nome').value = '';
             document.getElementById('comprador').value = '';
-            document.getElementById('dataAtual').innerText = '';
         }
 
         function imprimirCupom() {
