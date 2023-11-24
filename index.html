@@ -78,13 +78,7 @@
         function imprimirCupom() {
       
           // Lógica para impressão (pode variar dependendo do ambiente)
-          const conteudoCupom = document.getElementById('cupom').innerHTML;
-          const janelaImpressao = window.open('', '_blank');
-          janelaImpressao.document.write('<html><head><title>Cupom</title></head><body>');
-          janelaImpressao.document.write(conteudoCupom);
-          janelaImpressao.document.write('</body></html>');
-          janelaImpressao.document.close();
-          janelaImpressao.print();
+          print();
 
         }
 
