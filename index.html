@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,14 +33,14 @@
 <body>
 
     <form id="formulario">
-        <label for="nome">Nome:</label>
+        <label for="nome">Nome do Serviço:</label>
         <input type="text" id="nome" required>
 
         <label for="valor">Valor (R$):</label>
         <input type="number" id="valor" required>
 
-        <label for="tipo">Tipo de Serviço:</label>
-        <input type="text" id="tipo" required>
+        <label for="data">Data do Serviço:</label>
+        <input type="text" id="data" required>
 
         <button type="button" onclick="gerarCupom()">Gerar Cupom</button>
     </form>
@@ -49,7 +49,7 @@
         <h2>Cupom Gerado</h2>
         <p><strong>Nome:</strong> <span id="cupomNome"></span></p>
         <p><strong>Valor:</strong> R$<span id="cupomValor"></span></p>
-        <p><strong>Tipo de Serviço:</strong> <span id="cupomTipo"></span></p>
+        <p><strong>Data do Serviço:</strong> <span id="cupomTipo"></span></p>
 
         <button onclick="imprimirCupom()">Imprimir</button>
         <button onclick="voltarFormulario()">Voltar</button>
@@ -59,11 +59,11 @@
         function gerarCupom() {
             const nome = document.getElementById('nome').value;
             const valor = document.getElementById('valor').value;
-            const tipo = document.getElementById('tipo').value;
+            const data = document.getElementById('data').value;
 
             document.getElementById('cupomNome').innerText = nome;
             document.getElementById('cupomValor').innerText = valor;
-            document.getElementById('cupomTipo').innerText = tipo;
+            document.getElementById('cupomTipo').innerText = data;
 
             document.getElementById('formulario').style.display = 'none';
             document.getElementById('cupom').style.display = 'block';
