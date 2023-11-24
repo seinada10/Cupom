@@ -43,6 +43,7 @@
         <input type="date" id="data" required>
 
         <button type="button" onclick="gerarCupom()">Gerar Cupom</button>
+        <button type="button" onclick="limparCampos()">Limpar Campos</button>
     </form>
 
     <div id="cupom">
@@ -73,6 +74,12 @@
         function formatDate(dateString) {
             const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
             return new Date(dateString).toLocaleDateString('pt-BR', options);
+        }
+
+        function limparCampos() {
+            document.getElementById('nome').value = '';
+            document.getElementById('valor').value = '';
+            document.getElementById('data').value = '';
         }
 
         function imprimirCupom() {
