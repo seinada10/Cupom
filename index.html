@@ -36,21 +36,18 @@
         <label for="nome">Nome do Serviço:</label>
         <input type="text" id="nome" required>
 
-        <label for="valor">Valor (R$):</label>
-        <input type="number" id="valor" required>
-
-        <label for="data">Data do Serviço:</label>
-        <input type="date" id="data" required>
+        <label for="comprador">Comprador:</label>
+        <input type="text" id="comprador" required>
         <br>
         <button type="button" onclick="gerarCupom()">Gerar Cupom</button>
         <button type="button" onclick="limparCampos()">Limpar Campos</button>
     </form>
 
     <div id="cupom">
-        <h2>Cupom Gerado</h2>
-        <p><strong>Nome:</strong> <span id="cupomNome"></span></p>
-        <p><strong>Valor:</strong> R$<span id="cupomValor"></span></p>
-        <p><strong>Data do Serviço:</strong> <span id="cupomTipo"></span></p>
+        <h2>Recibo</h2>
+        <p><strong>Referente a</strong> <span id="cupomNome">.</span></p>
+        <p><strong>Comprador:</strong> <span id="cupomComprador"></span></p>
+        <p><strong>Data:</strong> <span id="cupomData"></span></p>
 
         <button onclick="imprimirCupom()">Imprimir</button>
         <button onclick="voltarFormulario()">Voltar</button>
@@ -59,45 +56,41 @@
     <script>
         function gerarCupom() {
             const nome = document.getElementById('nome').value;
-            const valor = document.getElementById('valor').value;
-            const dataInput = document.getElementById('data');
-            const data = formatDate(dataInput.value);
+            const comprador = document.getElementById('comprador').value;
+            const dataAtual = getDataAtual();
 
             document.getElementById('cupomNome').innerText = nome;
-            document.getElementById('cupomValor').innerText = valor;
-            document.getElementById('cupomTipo').innerText = data;
+            document.getElementById('cupomComprador').innerText = comprador;
+            document.getElementById('cupomData').innerText = dataAtual;
 
             document.getElementById('formulario').style.display = 'none';
             document.getElementById('cupom').style.display = 'block';
         }
 
-        function formatDate(dateString) {
+        function getDataAtual() {
             const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
-            return new Date(dateString).toLocaleDateString('pt-BR', options);
+            return new Date().toLocaleDateString('pt-BR', options);
         }
 
         function limparCampos() {
             document.getElementById('nome').value = '';
-            document.getElementById('valor').value = '';
-            document.getElementById('data').value = '';
+            document.getElementById('comprador').value = '';
+            document.getElementById('dataAtual').innerText = '';
         }
 
         function imprimirCupom() {
-      
-          // Lógica para impressão (pode variar dependendo do ambiente)
-          const botoes = document.querySelectorAll('#cupom button');
-          botoes.forEach(botao => {
-              botao.style.display = 'none';
-          });
-      
-          print();
-      
-          // Adicionar os botões de volta após 5 segundos
-          setTimeout(function() {
-              botoes.forEach(botao => {
-                  botao.style.display = 'block';
-              });
-          }, 2500);
+            const botoes = document.querySelectorAll('#cupom button');
+            botoes.forEach(botao => {
+                botao.style.display = 'none';
+            });
+            
+            print();
+
+            setTimeout(function() {
+                botoes.forEach(botao => {
+                    botao.style.display = 'block';
+                });
+            }, 2500);
         }
 
         function voltarFormulario() {
