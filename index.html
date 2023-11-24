@@ -59,7 +59,8 @@
         function gerarCupom() {
             const nome = document.getElementById('nome').value;
             const valor = document.getElementById('valor').value;
-            const data = document.getElementById('data').value;
+            const dataInput = document.getElementById('data');
+            const data = formatDate(dataInput.value);
 
             document.getElementById('cupomNome').innerText = nome;
             document.getElementById('cupomValor').innerText = valor;
@@ -69,9 +70,20 @@
             document.getElementById('cupom').style.display = 'block';
         }
 
+        function formatDate(dateString) {
+            const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+            return new Date(dateString).toLocaleDateString('pt-BR', options);
+        }
+
         function imprimirCupom() {
             // Lógica para impressão (pode variar dependendo do ambiente)
-            alert('Cupom impresso!');
+            const conteudoCupom = document.getElementById('cupom').innerHTML;
+            const janelaImpressao = window.open('', '_blank');
+            janelaImpressao.document.write('<html><head><title>Cupom</title></head><body>');
+            janelaImpressao.document.write(conteudoCupom);
+            janelaImpressao.document.write('</body></html>');
+            janelaImpressao.document.close();
+            janelaImpressao.print();
         }
 
         function voltarFormulario() {
